@@ -11,10 +11,6 @@ mariadb_connection = mariadb.connect(
     user="root", password="230799", database="ERP", host="localhost", port="3306")
 create_cursor = mariadb_connection.cursor(buffered=True)
 
-# create_cursor.execute("SELECT level_id FROM level WHERE level_name=A")
-
-# for i in create_cursor:
-#     print(i)
 
 
 selected = input("Select \n1-Register New Student \n2-Enroll Course \n3-Create New Course \n4-Create Course Schedule \n5-Display Student Schedule\n")
@@ -69,15 +65,12 @@ def enroll_course():
     total_hours = input("Total Hours: ")
     enrol_date = input("enrol_date(DD/MM/YYYY hh:mm:ss): ")
     enrol_date = datetime.strptime(enrol_date, "%d/%m/%Y %H:%M:%S")
-    print(enrol_date)
     level_student = f"SELECT level_id FROM student WHERE student_id={int(student_ID)}"
     create_cursor.execute(level_student)
     x = create_cursor.fetchall()[0][0]
-    print(x)
     level_course = f"SELECT level_id FROM course WHERE course_id={int(course_ID)}"
     create_cursor.execute(level_course)
     y = create_cursor.fetchall()[0][0]
-    print(y, "y")
     max_capacity = f"SELECT max_capacity FROM course WHERE course_id={int(course_ID)}"
     create_cursor.execute(max_capacity)
     max_capacity_numbers = create_cursor.fetchall()[0][0]
@@ -85,30 +78,27 @@ def enroll_course():
     pre_reserve = f"SELECT COUNT(course_id) FROM enrollment_history WHERE course_id={int(course_ID)}"
     create_cursor.execute(pre_reserve)
     pre_reserve_numbers = create_cursor.fetchall()[0][0]
-    print(type(pre_reserve_numbers), "mmm")
 
     statment = f"SELECT course_id,student_id FROM enrollment_history"
     create_cursor.execute(statment)
     a = create_cursor.fetchall()
-    print(a)
     rate_per_hour_statment = f"SELECT rate_per_hour FROM course WHERE course_id={int(course_ID)}"
     create_cursor.execute(rate_per_hour_statment)
     rate_per_hour = create_cursor.fetchall()[0][0]
     insert_statment = "INSERT INTO enrollment_history (student_id, course_id, enrol_date, total_hours, total) VALUES (%s, %s, %s, %s, %s);"
-    data = (int(student_ID), int(course_ID), enrol_date,
-            int(total_hours), int(total_hours)*rate_per_hour)
-    if y == x and pre_reserve_numbers < int(max_capacity_numbers) and (course_ID, student_ID) not in a:
-        print("ccccccccc")
+    data = (int(student_ID), int(course_ID), enrol_date,int(total_hours), int(total_hours)*rate_per_hour)
+    if y == x and pre_reserve_numbers < int(max_capacity_numbers) and (int(course_ID), int(student_ID)) not in a:
         create_cursor.execute(insert_statment, data)
         mariadb_connection.commit()
+        print("successfully Entry ")
+    else:
+        print("failed entry")
 
-# if level not exest 
-#  else if level exest go to time step 
-# check if it in the same day with any course 
-# if not equal with any day add it 
-# if equal check time > if (startTime > newtime < endTime) && newTime+duration =< endTime 
+
+
 def convert_time_to_second(x):
     return time.mktime(datetime.strptime(str(x), "%Y-%m-%d %H:%M:%S").timetuple())
+
 
 def course_schedule():
     course_id = input("Course ID: ")

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Courses List</title>
+</head>
+<style>
+    table{
+        width: 80%;
+        margin: 0 auto;
+        background-color: rgb(231, 223, 223);
+    }
+    tr >th{
+        background-color: rgb(139, 179, 216);
+    }
+    table, th, td {
+        border: 1px solid #fff;
+        border-collapse: collapse;
+        
+
+    }
+
+</style>
+<body>
+    <table>
+        <caption>Courses List</caption>
+        <tr>
+            <th>Course ID</th>
+            <th>Course Name</th>
+            <th>Level</th>
+            <th>Max Capacity</th>
+            <th>Rate per hour</th>
+        </tr>
+        {% for ele in result %}
+                <tr>
+                    <td>{{ ele.id }}</td>
+                    <td>{{ ele.name }}</td>
+                    <td>{{ ele.level }}</td>
+                    <td>{{ ele.max_capacity }}</td>
+                    <td>{{ ele.rate_per_hour }}</td>
+                </tr>
+            {% endfor %}
+        
+    </table>
+</body>
+</html>

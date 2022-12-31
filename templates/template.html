@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="../web.py"> -->
+    <style>
+        h3{
+            color: rgb(10, 153, 75) ;
+            text-align: center;
+        }
+        form{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        form > a >input{
+            margin-left: 10px;
+            background-color: rgb(224, 214, 214);
+            color:rgb(10, 153, 75);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        div >hr{
+            margin-left: 370px;
+            margin-right: 370px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Choose</h3>
+    <form>
+        <a href="./students_list.html"><input type="button" value="students list"></a>
+        <a href="./courses_list.html"><input type="button" value="Courses List"></a>
+        <a href="./courses_schedules.html"><input type="button" value="Schedulse List"></a>
+
+    </form>
+    <div>
+        <hr>
+    </div>
+    <form>
+        <a href="/student_details?token=abc123"><input type="button" value="API(all students)"></a>
+        <a href="/student_details/1?token=abc123"><input type="button" value="API(all students)"></a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses Schedules</title>
+</head>
+<style>
+    table{
+        width: 80%;
+        margin: 0 auto;
+        background-color: rgb(231, 223, 223);
+    }
+    tr >th{
+        background-color: rgb(139, 179, 216);
+    }
+    table, th, td {
+        border: 1px solid #fff;
+        border-collapse: collapse;
+        
+
+    }
+</style>
+<body>
+    <table>
+        <caption>Courses Schedules</caption>
+        <tr>
+            <th>Course ID</th>
+            <th>Course Name</th>
+            <th>Level</th>
+            <th>Day</th>
+            <th>Start time</th>
+            <th>Duration</th>
+        </tr>
+        {% for ele in result %}
+        <tr>
+            <td>{{ ele.id }}</td>
+            <td>{{ ele.name }}</td>
+            <td>{{ ele.level }}</td>
+            <td>{{ ele.day }}</td>
+            <td>{{ ele.start_time }}</td>
+            <td>{{ ele.duration }}</td>
+        </tr>
+    {% endfor %}
+        
+    </table>
+</body>
+</html>

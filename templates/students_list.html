@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students List</title>
+    <style>
+        table{
+            width: 80%;
+            margin: 0 auto;
+            background-color: rgb(231, 223, 223);
+        }
+        tr >th{
+            background-color: rgb(139, 179, 216);
+        }
+        table, th, td {
+            border: 1px solid #fff;
+            border-collapse: collapse;
+            
+
+        }
+
+    </style>
+</head>
+<body>
+    <table>
+        <caption>Students List</caption>
+        <tr>
+            <th>Student ID</th>
+            <th>Student Name</th>
+            <th>Level</th>
+            <th>Date of Birth</th>
+            <th>Mobille Number</th>
+            <th>Email</th>
+            <th>Address</th>
+        </tr>
+            {% for ele in result %}
+                <tr>
+                    <td>{{ ele.id }}</td>
+                    <td>{{ ele.name }}</td>
+                    <td>{{ ele.level }}</td>
+                    <td>{{ ele.DOB }}</td>
+                    <td>{{ ele.mobile_number }}</td>
+                    <td>{{ ele.email }}</td>
+                    <td>{{ ele.adddress }}</td>
+
+
+
+                </tr>
+            {% endfor %}
+
+    </table>
+</body>
+</html>
